@@ -1,0 +1,13 @@
+{% load incident_extras %}{% if roi %}
+<div class="roi-card">
+    <div class="roi-title">knowledge-base baseline vs measured tool time</div>
+    <div class="roi-line roi-class"><span>runbook</span><span class="roi-value">{{ roi.runbook_class|default:"unknown" }}</span></div>
+    {% for item in roi.breakdown %}
+    <div class="roi-line roi-item"><span>{{ item.item }}{% if item.count is not None and item.count != "" %} &times;{{ item.count }}{% endif %}</span><span class="roi-value">{{ item.minutes|mins2 }} min</span></div>
+    {% endfor %}
+    <div class="roi-line roi-tooltime"><span>measured tool time</span><span class="roi-value">{% if roi.tool_time_minutes is not None %}{{ roi.tool_time_minutes|mins4 }} min{% else %}unavailable{% endif %}</span></div>
+    <div class="roi-line roi-saved"><span>time saved</span><span class="roi-value">{% if roi.time_saved_minutes is not None %}{{ roi.time_saved_minutes|mins2 }} min{% else %}unavailable{% endif %}</span></div>
+</div>
+{% else %}
+<div class="roi-card roi-unavailable"><span class="roi-value">time saved: unavailable</span></div>
+{% endif %}

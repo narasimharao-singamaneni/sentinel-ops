@@ -1,0 +1,195 @@
+{
+  "timestamp": "2026-08-21T14:59:40.821689+00:00",
+  "host": "wifi-automations-MacBook-Pro.local",
+  "environment": "Darwin 25.4.0 (arm64)",
+  "base_url": "http://127.0.0.1:8002",
+  "postgresql_version": "PostgreSQL 16.14 (Homebrew) on aarch64-apple-darwin25.6.0, compiled by Apple clang version 21.0.0 (clang-2100.1.1.101), 64-bit",
+  "dataset": {
+    "active": 50000,
+    "inactive": 150000,
+    "total": 200000
+  },
+  "requests_per_type": 200,
+  "warmup": 20,
+  "concurrency_levels": [
+    1,
+    10
+  ],
+  "thresholds": {
+    "lookup_p99_ms": 25.0,
+    "list_p99_ms": 150.0
+  },
+  "results": {
+    "pk_lookup_active_c1": {
+      "warmup": {
+        "p50_ms": 0.616,
+        "p95_ms": 0.785,
+        "p99_ms": 11.558,
+        "min_ms": 0.541,
+        "max_ms": 11.558,
+        "mean_ms": 1.176,
+        "count": 20
+      },
+      "warm": {
+        "p50_ms": 0.552,
+        "p95_ms": 0.708,
+        "p99_ms": 0.96,
+        "min_ms": 0.511,
+        "max_ms": 6.504,
+        "mean_ms": 0.603,
+        "count": 200
+      }
+    },
+    "pk_lookup_inactive_c1": {
+      "warmup": {
+        "p50_ms": 1.062,
+        "p95_ms": 1.276,
+        "p99_ms": 1.757,
+        "min_ms": 0.954,
+        "max_ms": 1.757,
+        "mean_ms": 1.1,
+        "count": 20
+      },
+      "warm": {
+        "p50_ms": 0.961,
+        "p95_ms": 1.073,
+        "p99_ms": 1.111,
+        "min_ms": 0.861,
+        "max_ms": 1.147,
+        "mean_ms": 0.974,
+        "count": 200
+      }
+    },
+    "indexed_list_c1": {
+      "warmup": {
+        "p50_ms": 10.596,
+        "p95_ms": 15.718,
+        "p99_ms": 16.042,
+        "min_ms": 8.031,
+        "max_ms": 16.042,
+        "mean_ms": 10.928,
+        "count": 20
+      },
+      "warm": {
+        "p50_ms": 10.466,
+        "p95_ms": 12.22,
+        "p99_ms": 15.441,
+        "min_ms": 6.804,
+        "max_ms": 27.478,
+        "mean_ms": 10.645,
+        "count": 200
+      }
+    },
+    "pk_lookup_active_c10": {
+      "warmup": {
+        "p50_ms": 4.177,
+        "p95_ms": 6.779,
+        "p99_ms": 8.196,
+        "min_ms": 2.324,
+        "max_ms": 8.196,
+        "mean_ms": 4.692,
+        "count": 20
+      },
+      "warm": {
+        "p50_ms": 5.646,
+        "p95_ms": 18.236,
+        "p99_ms": 65.735,
+        "min_ms": 2.513,
+        "max_ms": 76.088,
+        "mean_ms": 7.325,
+        "count": 200
+      }
+    },
+    "pk_lookup_inactive_c10": {
+      "warmup": {
+        "p50_ms": 5.795,
+        "p95_ms": 11.707,
+        "p99_ms": 14.968,
+        "min_ms": 2.52,
+        "max_ms": 14.968,
+        "mean_ms": 7.102,
+        "count": 20
+      },
+      "warm": {
+        "p50_ms": 5.478,
+        "p95_ms": 13.373,
+        "p99_ms": 17.962,
+        "min_ms": 2.87,
+        "max_ms": 20.527,
+        "mean_ms": 6.533,
+        "count": 200
+      }
+    },
+    "indexed_list_c10": {
+      "warmup": {
+        "p50_ms": 21.301,
+        "p95_ms": 44.421,
+        "p99_ms": 44.709,
+        "min_ms": 16.181,
+        "max_ms": 44.709,
+        "mean_ms": 28.569,
+        "count": 20
+      },
+      "warm": {
+        "p50_ms": 16.349,
+        "p95_ms": 34.138,
+        "p99_ms": 36.804,
+        "min_ms": 8.515,
+        "max_ms": 41.085,
+        "mean_ms": 17.901,
+        "count": 200
+      }
+    }
+  },
+  "checks": [
+    {
+      "type": "pk_lookup_active",
+      "concurrency": 1,
+      "metric": "warm_p99_ms",
+      "value": 0.96,
+      "threshold_ms": 25.0,
+      "passed": true
+    },
+    {
+      "type": "pk_lookup_inactive",
+      "concurrency": 1,
+      "metric": "warm_p99_ms",
+      "value": 1.111,
+      "threshold_ms": 25.0,
+      "passed": true
+    },
+    {
+      "type": "indexed_list",
+      "concurrency": 1,
+      "metric": "warm_p99_ms",
+      "value": 15.441,
+      "threshold_ms": 150.0,
+      "passed": true
+    },
+    {
+      "type": "pk_lookup_active",
+      "concurrency": 10,
+      "metric": "warm_p99_ms",
+      "value": 65.735,
+      "threshold_ms": 25.0,
+      "passed": false
+    },
+    {
+      "type": "pk_lookup_inactive",
+      "concurrency": 10,
+      "metric": "warm_p99_ms",
+      "value": 17.962,
+      "threshold_ms": 25.0,
+      "passed": true
+    },
+    {
+      "type": "indexed_list",
+      "concurrency": 10,
+      "metric": "warm_p99_ms",
+      "value": 36.804,
+      "threshold_ms": 150.0,
+      "passed": true
+    }
+  ],
+  "verdict": "SLO FAIL"
+}

@@ -1,0 +1,35 @@
+{% load incident_extras %}<tr class="incident-row" data-id="{{ inc.id }}" data-status="{{ inc.status }}">
+    <td class="cell-id">{{ inc.id }}</td>
+    <td><span class="status-badge status-{{ inc.status }}">{{ inc.get_status_display }}</span></td>
+    <td class="cell-root-cause">{{ inc.root_cause }}</td>
+    <td><span class="confidence {{ inc.confidence|conf_class }}">{{ inc.confidence|pct }}%</span></td>
+    <td class="cell-target">{{ inc.target_resource }}</td>
+    <td>
+        <details class="citations">
+            <summary>evidence &amp; dry-run</summary>
+            <ul class="citation-list">
+                {% for cit in inc.citations %}
+                <li>
+                    <span class="citation-source">{{ cit.source|default:"" }}</span>
+                    <div class="citation-snippet">{{ cit.snippet|default:"" }}</div>
+                    <div class="citation-ids">trace <code>{{ cit.trace_id|default:"—" }}</code> span <code>{{ cit.span_id|default:"—" }}</code></div>
+                </li>
+                {% empty %}
+                <li class="citation-empty">no citations</li>
+                {% endfor %}
+            </ul>
+            <pre class="dry-run-payload">{{ inc.dry_run_payload|to_json }}</pre>
+            {% if inc.raw_log %}<pre class="raw-log">{{ inc.raw_log }}</pre>{% endif %}
+        </details>
+    </td>
+    <td class="cell-roi">
+        {% include "incidents/_incident_roi.html" with roi=inc.roi %}
+    </td>
+    <td class="cell-action">
+        {% if inc.status == "NEW" %}
+        <button type="button" class="approve-btn" data-id="{{ inc.id }}">Approve</button>
+        {% else %}
+        <span class="action-na">—</span>
+        {% endif %}
+    </td>
+</tr>

@@ -1,0 +1,25 @@
+# Personal content (moved, never committed)
+personal/
+
+# uv
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Local runtime / test artifacts
+.DS_Store
+*.sqlite
+.pytest_cache/
+reports/run*_master.log
+apps/openwindow/state.json
+apps/openwindow/availability.json
+integration/logs/
+
+# Local LLM model cache (omlx/HuggingFace weights, multi-GB — local only)
+scripts/omlx/
+
+# Environments
+.env

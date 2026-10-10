@@ -1,5 +1,7 @@
 # Sentinel-Ops
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 End-to-end, no-mock AIOps loop: a real fault in a real service is reported up, root-caused by a real local LLM against a local runbook knowledge base, surfaced on a real dashboard with a measured ROI, and — once approved — executed back through the system. Everything runs on this machine: uv only, no Docker, no mocks in any verification code, and the real LLM at `127.0.0.1:8000/v1` is the only LLM used (no fallback/fake-LLM verification paths).
 
 ## System map
